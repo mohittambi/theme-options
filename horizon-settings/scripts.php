@@ -1,0 +1,1 @@
+<script type="text/javascript" href="<?php bloginfo("template_directory"); ?>/horizon-settings/include/horizon-add-js.js" ></script>

@@ -2,13 +2,11 @@
 add_action('admin_head', 'my_custom_css');
 
 function my_custom_css() {
-  echo '<style>
+echo '<style>
     
 .horizon {
     padding: 4px 30px;
     border: 2px solid;
-    width: 80%;
-    margin: 20px auto;
     background: antiquewhite;
 }
 .horizon .form-table th {
@@ -37,8 +35,11 @@ function my_custom_css() {
     margin-top: 20px;
 }
 .theme-logo {
-    width: 170px;
-    height: 60px;
+    width: auto;
+    text-align: center;
+}
+.theme-logo img {
+    height: 50px;
 }
 .items-list {
     background: bisque;
@@ -54,6 +55,8 @@ function my_custom_css() {
 .dash.title-section {
     padding: 8px;
 }
-
-  </style>';
+.dash-items .items-list {
+    cursor: pointer;
+}
+</style>';
 }

@@ -7,14 +7,16 @@
 
 require_once('include/horizon-add-customcss.php');
 ?>
+<?php if($_SERVER['QUERY_STRING'] === 'page=horizon_theme_options.php'){ ?>
 <link rel="stylesheet" type="text/css" href="<?php bloginfo("template_directory"); ?>/horizon-settings/include/horizon-add-css.css" >
-<link rel="stylesheet" type="text/css" href="<?php bloginfo("template_directory"); ?>/horizon-settings/include/horizon-customcss.php" >
-<script type="text/javascript" href="<?php bloginfo("template_directory"); ?>/horizon-settings/include/horizon-add-js.js" ></script>
+<link rel="stylesheet" type="text/css" href="<?php bloginfo("template_directory"); ?>/horizon-settings/include/horizon-add-customcss.php" >
+<?php } ?>
 
 <?php
 /**
  * Theme Option Page
  */
+
 function horizon_theme_menu()
 {
   add_theme_page( 'Theme Option', 'Theme Options', 'manage_options', 'horizon_theme_options.php', 'horizon_theme_page');  
@@ -24,7 +26,8 @@ add_action('admin_menu', 'horizon_theme_menu');
 /**
  * Callback function to the add_theme_page
  * Will display the theme options page
- */ 
+ */
+
 function horizon_theme_page()
 {
 ?>
@@ -38,7 +41,7 @@ function horizon_theme_page()
         <div class="horizon-main">
 
           <div class="horizon-menu">
-            <div class="theme-logo"><a href="#" ><img src="file:///F:/xampp/htdocs/horizoncustom/wp-content/themes/twentysixteen/horizon-settings/Accelrys.jpg" alt="Theme Logo"></a></div>
+            <div class="theme-logo"><a href="#" ><img src="<?php echo get_template_directory_uri();?>/horizon-settings/Accelrys.jpg" alt="Theme Logo"></a></div>
             <div class="dash-items">
               <ul>
                 <li><div class="text-box items-list">Text box Title</div></li>
@@ -213,7 +216,7 @@ function horizon_register_settings(){
  */
 function horizon_display_section($section){ ?>
 <div class="dash title-section">
-  <p>Welcome <p>
+  <p>Welcome <b><?php echo wp_get_current_user()->display_name; ?></b>,<p>
 </div>
 <?php
 }
@@ -342,4 +345,14 @@ function horizon_validate_settings($input)
   }
 
   return $newinput;
+}
+
+
+
+
+
+
+/* scripts */
+if($_SERVER['QUERY_STRING'] === 'page=horizon_theme_options.php'){
+require_once('scripts.php');
 }
